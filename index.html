@@ -5,7 +5,21 @@
         <!-- We've provided some styles for you, aren't we nice? -->
         <link rel="stylesheet" type="text/css" href="reset.css" />
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="angular.js" defer></script>
+        <script src="app.js" defer></script>
     </head>
-    <body>
+    <body ng-app="flashcards" ng-controller="MainCtrl">
+      <div ng-controller="FlashCardCtrl" class="flash-card">
+        <h1>{{flashCard.question | caps}}</h1>
+        <ul class="flash-card-answers">
+          <li ng-class="{'answer-feedback':(attempts.indexOf(answer)>-1)}" ng-click="answerQuestion({answer: answer})" ng-repeat="answer in flashCard.answers" class="flash-card-answer">
+            {{answer.text}}
+          </li>
+        </ul>
+        <h2 class="answer-feedback" ng-class="answeredCorrectly?'correct':'incorrect'" ng-show="answered">
+          <span ng-show="answeredCorrectly">Yeah, you got it right!</span>
+          <span ng-show="!answeredCorrectly">Nope, you got it wrong.</span>
+        </h2>
+      </div>
     </body>
 </html>

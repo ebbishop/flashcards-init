@@ -1,6 +1,9 @@
 {
   "name": "workshop-scaffold",
   "version": "1.0.0",
+  "scripts":{
+    "start":"nodemon -e html,css,js start.js"
+  },
   "dependencies": {
     "express": "^4.11.2"
   },
