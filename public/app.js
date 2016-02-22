@@ -1,11 +1,20 @@
 var flashcards = angular.module('flashcards',[]);
 
 flashcards.controller('FlashCardCtrl', function($scope){
-  var rand = Math.floor(Math.random()*$scope.flashCards.length)
-  $scope.flashCard = $scope.flashCards[rand];
+  // var rand = Math.floor(Math.random()*$scope.flashCards.length)
   $scope.attempts = [];
+  // $scope.initialize = function(){
+  //   console.log('initialize');
+  //   $scope.answeredCorrectly = false;
+  //   $scope.answered = false;
+  //   $scope.attempts = [];
+  // }
+
+  $scope.currentFlashcard = 0;
+  $scope.flashCard = $scope.flashCards[$scope.currentFlashcard];
+
   $scope.answerQuestion = function($stateParams){
-    if($scope.attempts.indexOf($stateParams.answer)===-1){
+    if($scope.attempts.indexOf($stateParams.answer)===-1 && !$scope.answeredCorrectly){
       $scope.attempts.push($stateParams.answer);
       $scope.answered=true;
       if($stateParams.answer.correct){
@@ -16,6 +25,11 @@ flashcards.controller('FlashCardCtrl', function($scope){
     }
   }
 
+  // $scope.nextQuestion = function(){
+  //   console.log($scope.currentFlashcard);
+  //   $scope.flashCard = $scope.flashCards[$scope.currentFlashcard++];
+  //   $scope.initialize();
+  // }
 })
 
 flashcards.controller('MainCtrl', function($scope){
